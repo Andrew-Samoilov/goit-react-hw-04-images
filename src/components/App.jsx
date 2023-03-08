@@ -3,7 +3,7 @@ import css from "./styles.module.css";
 import Searchbar from "./Searchbar";
 import ImageGallery from "./ImageGallery";
 // import Button from "./Button";
-import Modal from "./Modal";
+import { ToDoModal } from "./ToDoModal";
 
 export default class App extends Component {
   state = {
@@ -47,13 +47,13 @@ export default class App extends Component {
   }
 
   togleLoading = data => {
-    console.log(`Loading`,data);
-    this.setState({onLoading: data});
+    console.log(`Loading`, data);
+    this.setState({ onLoading: data });
   }
 
   render() {
     return (
-      
+
       <div className={css.App}>
         {/* {this.state.onLoading===true && (
           <Loader />
@@ -62,8 +62,8 @@ export default class App extends Component {
         <Searchbar
           onSubmit={this.formSubmitHandler}
           page={this.handleLoad}
-          // onLoading={this.onLoading}
-        />   
+        // onLoading={this.onLoading}
+        />
 
         <ImageGallery
           inputSearch={this.state.inputSearch}
@@ -78,10 +78,10 @@ export default class App extends Component {
           )}   
         </footer> */}
         {this.state.showModal && (
-          <Modal onClose={this.toggleModal}>
+          <ToDoModal onClose={this.toggleModal} imgSrc={this.state.imgUrl} imgAlt={this.state.imgTag}>
             <p>{this.state.clickId}</p>
             <img src={this.state.imgUrl} alt={this.state.imgTag} />
-          </Modal>
+          </ToDoModal>
         )}
       </div>
     );

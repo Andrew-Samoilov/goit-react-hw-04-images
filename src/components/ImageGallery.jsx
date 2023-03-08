@@ -4,7 +4,7 @@ import ErrorPage from './ErrorPage'
 import { getImage } from "../services/getImage";
 import { Loader } from "./Loader";
 import { ImageGalleryItem } from "./ImageGalleryItem";
-import Button from "./Button";
+import { Button } from "./Button";
 
 export default class ImageGallery extends Component {
     state = {
@@ -45,7 +45,7 @@ export default class ImageGallery extends Component {
 
         // if (prevProps.pageLoaded !== this.props.pageLoaded) {
         if (prevState.page !== this.state.page) {
-            console.log(`Changed page`);
+            console.log(`Changed page`, this.state.page);
             this.setState({ status: 'pending' })
             // getImage(this.props.inputSearch, this.props.pageLoaded)
             getImage(this.props.inputSearch, this.state.page)
@@ -70,7 +70,7 @@ export default class ImageGallery extends Component {
         this.props.onClick(id, largeImageURL, tags);
     }
 
-    handleLoad = () => {   
+    handleLoad = () => {
         // console.log(this.state.page)
         this.setState((prev) => ({ page: prev.page + 1 }))
     }
@@ -91,7 +91,7 @@ export default class ImageGallery extends Component {
                     <footer className={css.footer}>
 
                         {this.state.inputSearch !== '' && (
-                            this.state.totalHits/20>this.state.page &&(
+                            this.state.totalHits / 20 > this.state.page && (
                                 <Button onLoadMore={this.handleLoad} />
                             )
                         )}
