@@ -12,7 +12,7 @@ export const ToDoModal = ({imgSrc,imgAlt, onClose}) => {
             console.log("Unmounting phase: same when componentWillUnmount runs");
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    } );
 
     // componentDidMount() {
     //     // console.log('Modal componentDidMount');

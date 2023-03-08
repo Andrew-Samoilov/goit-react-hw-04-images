@@ -1,6 +1,6 @@
 import { Component } from "react";
 import css from "./styles.module.css";
-import Searchbar from "./Searchbar";
+import { Searchbar } from "./Searchbar";
 import ImageGallery from "./ImageGallery";
 // import Button from "./Button";
 import { ToDoModal } from "./ToDoModal";
@@ -61,7 +61,7 @@ export default class App extends Component {
 
         <Searchbar
           onSubmit={this.formSubmitHandler}
-          page={this.handleLoad}
+          pageS={this.handleLoad}
         // onLoading={this.onLoading}
         />
 
@@ -72,11 +72,6 @@ export default class App extends Component {
           onClick={this.clickId}
           onLoading={this.togleLoading}
         />
-        {/* <footer className={css.footer}> 
-          {this.state.inputSearch!=='' && (
-            <Button onLoadMore={this.handleLoad} />
-          )}   
-        </footer> */}
         {this.state.showModal && (
           <ToDoModal onClose={this.toggleModal} imgSrc={this.state.imgUrl} imgAlt={this.state.imgTag}>
             <p>{this.state.clickId}</p>

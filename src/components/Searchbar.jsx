@@ -1,42 +1,35 @@
-import { Component } from "react";
+import { useState } from "react";
 import css from "./styles.module.css";
-// import { BsSearch } from 'react-icons/bs';
 
-export default class Searchbar extends Component {
-    state = {
-        inputSearch: '',
-        page: 1,
-    }
+export const Searchbar = ({pageS, onSubmit}) => {
+    const [inputSearch, setInpSrc] = useState('');
+    const [page, ] = useState('');
 
-    handleChange = e => {
-        this.setState({ [e.currentTarget.name]: e.currentTarget.value, });
+    const handleChange = e => {
+        // this.setState({ [e.currentTarget.name]: e.currentTarget.value, });
+        if (e.currentTarget.name === 'inputSearch') {
+            setInpSrc(e.currentTarget.value);
+        }
     };
 
-    handleSubmit = e => {
+    const handleSubmit = e => {
         e.preventDefault();
-  
-        if (this.state.inputSearch.trim() === '') {
+
+        if (inputSearch.trim() === '') {
             console.log(`No input, nothing search`);
             return;
         }
 
-        // if (this.state.inputSearch === this.props.onSubmit) {
-        //     console.log(`Same qerries`);
-        //     return;
-        // }
-
-        this.props.onSubmit(this.state.inputSearch);
-        this.props.page(this.state.page);
-        // console.log(this.state);
-        // this.setState({ inputSearch: '' });
+        onSubmit(inputSearch);
+        pageS(page);
+   
     };
 
-    render() {
         return (
             <header className={css.Searchbar}>
-        
+
                 <form className={css.SearchForm}
-                    onSubmit={this.handleSubmit}>                  
+                    onSubmit={handleSubmit}>
                     <button type="submit"
                         className={css.SearchFormButton}>
                         <span className={css.SearchFormButtonLabel}>Search</span>
@@ -47,12 +40,11 @@ export default class Searchbar extends Component {
                         autoComplete="off"
                         name="inputSearch"
                         autoFocus
-                        onChange={this.handleChange}
-                        value={this.state.inputSearch}
+                        onChange={handleChange}
+                        value={inputSearch}
                         placeholder="Search images and photos"
                     />
                 </form>
             </header>
         );
-    }
 };
