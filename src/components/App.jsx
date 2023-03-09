@@ -11,7 +11,7 @@ const App = () => {
   const [clickId, setClickId] = useState(1);
   const [imgUrl, setImgUrl] = useState('');
   const [imgTag, setImgTag] = useState('');
-  const [onLoading, setOnLoading] = useState(false);
+  // const [onLoading, setOnLoading] = useState(false);
 
   const formSubmitHandler = (data) => {
     console.log(`formSubmitHandler`, data);
@@ -37,10 +37,10 @@ const App = () => {
     setShowModal(() => (true));
   }
 
-  const togleLoading = data => {
-    console.log(`Loading`, data);
-    setOnLoading(data);
-  }
+  // const togleLoading = data => {
+  //   console.log(`Loading`, data);
+  //   setOnLoading(data);
+  // }
 
   return (
 
@@ -60,7 +60,7 @@ const App = () => {
         pageLoaded={page}
         // currentHit={currentHit}
         onClick={clickItem}
-        onLoading={togleLoading}
+        // onLoading={togleLoading}
       />
       {showModal && (
         <ToDoModal onClose={toggleModal} imgSrc={imgUrl} imgAlt={imgTag}>

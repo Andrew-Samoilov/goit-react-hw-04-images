@@ -6,7 +6,7 @@ import { Loader } from "./Loader";
 import { ImageGalleryItem } from "./ImageGalleryItem";
 import { Button } from "./Button";
 
-export const ImageGallery = ({ inputSearch, pageLoaded, currentHit, onClick, onLoading }) => {
+export const ImageGallery = ({ inputSearch, pageLoaded, currentHit, onClick }) => {
     const [images, setImages] = useState([]);
     const [error, setError] = useState('');
     const [page, setPage] = useState(1);
