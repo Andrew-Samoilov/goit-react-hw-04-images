@@ -4,15 +4,16 @@ import css from "./styles.module.css";
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const ToDoModal = ({imgSrc,imgAlt, onClose}) => {
+export const ToDoModal = ({ imgSrc, imgAlt, onClose }) => {
     useEffect(() => {
-        console.log("Mounting phase: same when componentDidMount runs");
+        console.log("Mounting phase: same when componentDidMount runs",
+            imgSrc, imgAlt);
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             console.log("Unmounting phase: same when componentWillUnmount runs");
             window.removeEventListener('keydown', handleKeyDown);
         };
-    } );
+    });
 
     // componentDidMount() {
     //     // console.log('Modal componentDidMount');
@@ -26,24 +27,25 @@ export const ToDoModal = ({imgSrc,imgAlt, onClose}) => {
 
     const handleKeyDown = e => {
         if (e.code === 'Escape') {
-            // console.log('Нажали ESC, нужно закрыть модалку');
+            console.log('Нажали ESC, нужно закрыть модалку');
             onClose();
         }
     };
 
-   const handleBackdropClick = event => {
+    const handleBackdropClick = event => {
         if (event.currentTarget === event.target) {
+            console.log('Кликнули в backdrop, нужно закрыть модалку');
             onClose();
         }
     };
 
-        return createPortal(
-            <div className={css.Overlay} onClick={handleBackdropClick}>
-                <div className={css.Modal}>
-                    <img src={imgSrc} alt={imgAlt} />
-                </div>
-            </div>,
-            modalRoot,
-        );
-    
+    return createPortal(
+        <div className={css.Overlay} onClick={handleBackdropClick}>
+            <div className={css.Modal}>
+                <img src={imgSrc} alt={imgAlt} />
+            </div>
+        </div>,
+        modalRoot,
+    );
+
 }

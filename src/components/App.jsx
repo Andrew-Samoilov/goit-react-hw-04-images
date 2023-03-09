@@ -1,84 +1,76 @@
-import { Component } from "react";
+import { useState } from "react";
 import css from "./styles.module.css";
 import { Searchbar } from "./Searchbar";
 import { ImageGallery } from "./ImageGallery";
-// import Button from "./Button";
 import { ToDoModal } from "./ToDoModal";
 
-export default class App extends Component {
-  state = {
-    inputSearch: '',
-    page: 1,
-    showModal: false,
-    clickId: 1,
-    imgUrl: '',
-    imgTag: '',
-    onLoading: false,
+const App = () => {
+  const [inputSearch, setInputSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const [showModal, setShowModal] = useState(false);
+  const [clickId, setClickId] = useState(1);
+  const [imgUrl, setImgUrl] = useState('');
+  const [imgTag, setImgTag] = useState('');
+  const [onLoading, setOnLoading] = useState(false);
+
+  const formSubmitHandler = (data) => {
+    console.log(`formSubmitHandler`, data);
+    setInputSearch(() => (data));
   }
 
-  formSubmitHandler = data => {
-    // console.log(data);
-    this.setState(() => ({
-      inputSearch: data,
-    }));
-  }
-
-  handleLoad = () => {
+  const handleLoad = () => {
     // console.log(this.state.page)
-    this.setState((prev) => ({ page: prev.page + 1 }))
+    setPage((prev) => (prev.page + 1));
   }
 
-  toggleModal = clickId => {
+  const toggleModal = clickId => {
     // console.log(` click ${clickId}`);
-    this.setState(() => ({ clickId }));
-    this.setState(({ showModal }) => ({
-      showModal: !showModal,
-    }));
+    setClickId(() => (clickId));
+    setShowModal(() => (false));
   };
 
-  clickId = (id, largeImageURL, tags) => {
-    // console.log(id, largeImageURL, tags);
-    this.setState(() => ({
-      clickId: id,
-      imgUrl: largeImageURL,
-      imgTag: tags,
-    }));
-    this.setState(() => ({ showModal: true }));
+  const clickItem = (id, largeImageURL, tags) => {
+    console.log(id, largeImageURL, tags);
+    setClickId(() => (id));
+    setImgUrl(() => (largeImageURL));
+    setImgTag(() => (tags));
+    setShowModal(() => (true));
   }
 
-  togleLoading = data => {
+  const togleLoading = data => {
     console.log(`Loading`, data);
-    this.setState({ onLoading: data });
+    setOnLoading(data);
   }
 
-  render() {
-    return (
+  return (
 
-      <div className={css.App}>
-        {/* {this.state.onLoading===true && (
+    <div className={css.App}>
+      {/* {this.state.onLoading===true && (
           <Loader />
         )} */}
 
-        <Searchbar
-          onSubmit={this.formSubmitHandler}
-          pageS={this.handleLoad}
-        // onLoading={this.onLoading}
-        />
+      <Searchbar
+        onSubmit={formSubmitHandler}
+        pageS={handleLoad}
+      // onLoading={this.onLoading}
+      />
 
-        <ImageGallery
-          inputSearch={this.state.inputSearch}
-          pageLoaded={this.state.page}
-          currentHit={this.state.currentHit}
-          onClick={this.clickId}
-          onLoading={this.togleLoading}
-        />
-        {this.state.showModal && (
-          <ToDoModal onClose={this.toggleModal} imgSrc={this.state.imgUrl} imgAlt={this.state.imgTag}>
-            <p>{this.state.clickId}</p>
-            <img src={this.state.imgUrl} alt={this.state.imgTag} />
-          </ToDoModal>
-        )}
-      </div>
-    );
-  }
+      <ImageGallery
+        inputSearch={inputSearch}
+        pageLoaded={page}
+        // currentHit={currentHit}
+        onClick={clickItem}
+        onLoading={togleLoading}
+      />
+      {showModal && (
+        <ToDoModal onClose={toggleModal} imgSrc={imgUrl} imgAlt={imgTag}>
+          <p>{clickId}</p>
+          <img src={imgUrl} alt={imgTag} />
+        </ToDoModal>
+      )}
+    </div>
+  );
+
 };
+
+export default App;

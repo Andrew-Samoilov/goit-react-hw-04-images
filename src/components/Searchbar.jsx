@@ -19,7 +19,7 @@ export const Searchbar = ({pageS, onSubmit}) => {
             console.log(`No input, nothing search`);
             return;
         }
-
+        console.log(`Search bar`,inputSearch);
         onSubmit(inputSearch);
         pageS(page);
    
