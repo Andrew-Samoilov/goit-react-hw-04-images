@@ -49,6 +49,7 @@ export const ImageGallery = ({ inputSearch, pageLoaded, currentHit, onClick, onL
                 setError(err);
                 setStatus('rejected');
             })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 
     // componentDidUpdate(prevProps, prevState) {
