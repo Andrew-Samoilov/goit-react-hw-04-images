@@ -113,7 +113,7 @@ export const ImageGallery = ({ inputSearch, pageLoaded, currentHit, onClick, onL
     if (status === 'pending') return <Loader />
 
     if (status === 'resolved')
-        return images && (
+        return inputSearch !== '' && (
             <>
                 <ul className={css.ImageGallery}>
                     <ImageGalleryItem
