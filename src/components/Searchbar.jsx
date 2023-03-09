@@ -3,7 +3,7 @@ import css from "./styles.module.css";
 
 export const Searchbar = ({pageS, onSubmit}) => {
     const [inputSearch, setInpSrc] = useState('');
-    const [page, ] = useState('');
+    const [page] = useState('');
 
     const handleChange = e => {
         // this.setState({ [e.currentTarget.name]: e.currentTarget.value, });
