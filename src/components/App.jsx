@@ -37,17 +37,9 @@ const App = () => {
     setShowModal(() => (true));
   }
 
-  // const togleLoading = data => {
-  //   console.log(`Loading`, data);
-  //   setOnLoading(data);
-  // }
-
   return (
 
     <div className={css.App}>
-      {/* {this.state.onLoading===true && (
-          <Loader />
-        )} */}
 
       <Searchbar
         onSubmit={formSubmitHandler}
